@@ -4,7 +4,7 @@
 This repository contains the webapplication made during the first NOVI Bootcamp for Full Stack Developers, which started in May 2019.  
 It is a demo drop application for DJ Don Diablo. Features are listed in the project description.
 
-**License**
+**License**  
 Everything in this repository can be used for education and testing purposes only. No code can be used in production, commercial or even graded assignments without contacting the author.
 
 ## Project description
@@ -14,5 +14,6 @@ Unless explicitly mentioned all database connections are made with MariaDB or My
 All database connections are made non persistent, meaning they are closed after each SQL query.
 
 ### database
-MariaDB SQL and data export for the Don Diablo Project. The data export contains some test data, including hashed passwords.  
-If you want to use these accounts you will have to generate a new Argon2 hash. Includes a Visual Paradigm class diagram for this database.
+MariaDB SQL and data export for the Don Diablo Project.  
+The data export contains some test data, including hashed passwords. If you want to use these accounts you will have to generate a new Argon2 hash.  
+Includes a Visual Paradigm class diagram for this database.
