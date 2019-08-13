@@ -1,7 +1,7 @@
 # DonDiablo
 
 **Contents of repository**  
-This repository contains the webapplication made during the first NOVI Bootcamp for Full Stack Developers, which started in May 2019.  
+This repository contains the webapplication made during the first [NOVI Bootcamp](https://www.novi.nl/full-stack-developer/) for Full Stack Developers, which started in May 2019.  
 It is a demo drop application for DJ Don Diablo. Features are listed in the project description.
 
 **License**  
