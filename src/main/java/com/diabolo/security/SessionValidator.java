@@ -31,14 +31,14 @@ public class SessionValidator {
     public boolean isValidSession() throws IOException {
         if (session != null) {
             if (session.getAttribute("firstname") == null) {
-                invalidateSession("login.html");
+                invalidateSession("login.jsp");
                 return false;
             } else {
                 ActiveUserValidator validator = new ActiveUserValidator(request, response);
                 if (validator.isUserActive()) {
                     return true;
                 } else {
-                    invalidateSession("login.html");
+                    invalidateSession("login.jsp");
                     return false;
                 }
             }
@@ -49,7 +49,7 @@ public class SessionValidator {
                     response.addCookie(cookie);
                 }
             }
-            response.sendRedirect("login.html");
+            response.sendRedirect("login.jsp");
             return false;
         }
     }
@@ -67,7 +67,7 @@ public class SessionValidator {
                         } else {
                             cookie.setMaxAge(0);
                             response.addCookie(cookie);
-                            invalidateSession("cookie.html");
+                            invalidateSession("cookie.jsp");
                             return false;
                         }
                     }
@@ -79,7 +79,7 @@ public class SessionValidator {
                         } else {
                             cookie.setMaxAge(0);
                             response.addCookie(cookie);
-                            invalidateSession("login.html");
+                            invalidateSession("login.jsp");
                             return false;
                         }
                     }
@@ -91,7 +91,7 @@ public class SessionValidator {
                         response.addCookie(cookie);
                     }
                 }
-                invalidateSession("cookie.html");
+                invalidateSession("cookie.jsp");
                 return false;
             }
             if ((cookieCounter == 2) && (sessionCookieCounter == 1)) {
@@ -103,7 +103,7 @@ public class SessionValidator {
                     cookie.setPath(request.getContextPath()+"/");
                     response.addCookie(cookie);
                 }
-                invalidateSession("cookie.html");
+                invalidateSession("cookie.jsp");
                 return false;
             }
         }

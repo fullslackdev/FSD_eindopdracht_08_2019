@@ -40,7 +40,7 @@ if (validator.isValidSession()) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Log in Success Page | Don Diablo</title>
+    <title>User Page | Don Diablo</title>
     <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
@@ -73,7 +73,7 @@ if (validator.isValidSession()) {
 				<li class="nav-item">
 					<a class="nav-link" href="#"><i class="fas fa-comments"></i> Comment</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="UserPage.jsp"><i class="fas fa-user"></i> User page</a>
 				</li>
 				<li class="nav-item">

@@ -63,7 +63,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             if (emailNotValid) {
                 //Todo: redirect to email validation error page
-                response.sendRedirect("emailvalidation.html");
+                response.sendRedirect("emailvalidation.jsp");
                 return;
             }
 
@@ -74,7 +74,7 @@ public class ResetPasswordServlet extends HttpServlet {
             String name = rs.getString(4) + " " + rs.getString(5);
             if (updatePasswordInDatabase(userId, passwordHash) > 0) {
                 EmailUtil.sendPasswordEmail(email, name, tempPassword);
-                response.sendRedirect("passwordchange.html");
+                response.sendRedirect("passwordchange.jsp");
             }
             rs.close();
         } catch (SQLException ex) {

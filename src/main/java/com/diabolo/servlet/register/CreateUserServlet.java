@@ -48,7 +48,7 @@ public class CreateUserServlet extends HttpServlet {
         String fullName = parameterMap.get("firstname")[0] + " " + parameterMap.get("lastname")[0];
         EmailUtil.sendNewUserEmail(parameterMap.get("email")[0], fullName, validation);
 
-        response.sendRedirect("emailvalidation.html");
+        response.sendRedirect("emailvalidation.jsp");
     }
 
     private boolean isValidFormInput(Map<String, String[]> parameterMap) {

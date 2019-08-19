@@ -1,49 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Password Change | Don Diablo</title>
-    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="stylesheet" href="resources/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/style.css">
-	<link rel="stylesheet" href="resources/floating-labels.css">
-	<link rel="stylesheet" href="resources/offcanvas.css">
-	<link rel="stylesheet" href="resources/fontawesome/css/all.min.css">
-</head>
-<body class="bgMainLogo">
-	<nav class="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
-		<a class="navbar-brand d-inline-block d-md-none" href="#">
-			<img class="dondiablo_png" src="images/dondiablo.png">
-		</a>
-		<button class="navbar-toggler" type="button" data-toggle="offcanvas" data-target="#mainNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="navbar-collapse offcanvas-collapse" id="mainNavbar">
-			<ul class="container navbar-nav justify-content-between">
-				<li class="nav-item d-md-inline-block d-none">
-					<a class="navbar-brand" href="/DonDiablo/">
-						<img class="dondiablo_png" src="images/dondiablo.png">
-					</a>					
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#"><i class="fas fa-upload"></i> Demo drop</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#"><i class="fas fa-comments"></i> Comment</a>
-				</li>
-				<li class="nav-item">					
-					<a class="nav-link" href="login.html"><i class="fas fa-user-lock"></i> Log in</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> Sign up</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<t:template pageTitle="Password Change">
+	<jsp:attribute name="navigation">
+		<t:nav_login>
+		</t:nav_login>
+	</jsp:attribute>
+	<jsp:attribute name="extraJS">	
+		<script src="resources/password.js"></script>
+	</jsp:attribute>
+	<jsp:body>
 	<div class="container py-5">
 		<div class="row">
 			<div class="offset-lg-3 offset-md-2 col-lg-6 col-md-8 offset-lg-3 offset-md-2">
@@ -115,12 +81,5 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="resources/jquery.slim.min.js"></script>
-	<script src="resources/popper.min.js"></script>
-	<script src="resources/bootstrap.min.js"></script>
-	<script src="resources/javascript.js"></script>
-	<script src="resources/password.js"></script>
-
-</body>
-</html>
+	</jsp:body>
+</t:template>

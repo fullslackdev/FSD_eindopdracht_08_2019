@@ -33,6 +33,6 @@ public class ValidateEmailServlet extends HttpServlet {
 
         EmailUtil.disableValidationInDatabase(validationCode);
 
-        response.sendRedirect("login.html");
+        response.sendRedirect("login.jsp");
     }
 }

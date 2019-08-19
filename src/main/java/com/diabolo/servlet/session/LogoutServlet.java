@@ -31,7 +31,7 @@ public class LogoutServlet extends HttpServlet {
                 }
             }
         }
-        response.sendRedirect("login.html");
+        response.sendRedirect("login.jsp");
     }
 
     @Override
