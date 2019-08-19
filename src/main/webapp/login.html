@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in Page | Don Diablo</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="stylesheet" href="resources/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/style.css">
+	<link rel="stylesheet" href="resources/floating-labels.css">
+	<link rel="stylesheet" href="resources/offcanvas.css">
+	<link rel="stylesheet" href="resources/fontawesome/css/all.min.css">
+</head>
+<body class="bgMainLogo">
+	<nav class="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
+		<a class="navbar-brand d-inline-block d-md-none" href="#">
+			<img class="dondiablo_png" src="images/dondiablo.png">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="offcanvas" data-target="#mainNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="navbar-collapse offcanvas-collapse" id="mainNavbar">
+			<ul class="container navbar-nav justify-content-between">
+				<li class="nav-item d-md-inline-block d-none">
+					<a class="navbar-brand" href="/DonDiablo/">
+						<img class="dondiablo_png" src="images/dondiablo.png">
+					</a>					
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#"><i class="fas fa-upload"></i> Demo drop</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#"><i class="fas fa-comments"></i> Comment</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="login.html"><i class="fas fa-user-lock"></i> Log in</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> Sign up</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container py-5">
+		<div class="row">
+			<div class="offset-lg-3 offset-md-2 col-lg-6 col-md-8 offset-lg-3 offset-md-2">
+				<div class="card bgHexagonLogo text-white bg-secondary">
+					<div class="card-header bg-dark text-white">
+						<h4 class="card-title text-uppercase mt-1 mb-1"><i class="fas fa-user-lock"></i> Log in</h4>
+					</div>
+					<div class="card-body">
+						<form id="login_form" class="needs-validation" action="LoginServlet" method="post" novalidate>
+							<div class="row login_row">
+								<div class="col-lg-8 col-md-10 col-sm-8 col-12">
+									<div class="form-label-group">
+										<!-- todo: update pattern -->
+										<input type="text" id="username" name="user" pattern="(?!(?:[^0-9]*[0-9]){4}|(?:[^\.]*[\.]){2})^[A-Za-z]{1}[A-Za-z0-9\.]{4,38}?[^\.]{1}$" maxlength="40" placeholder="Username" class="form-control" title="Fill in your username" required />
+										<label for="username">Username</label>
+										<div class="invalid-tooltip">
+											Please enter a valid username.
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row login_row">
+								<div class="col-lg-8 col-md-10 col-sm-8 col-12">
+									<div class="form-label-group">
+										<!-- todo: update pattern pattern="[A-Za-z0-9]{4,}"-->
+										<input type="password" id="password" name="pwd"  placeholder="Password" class="form-control" title="Fill in your password" required />
+										<label for="password">Password</label>
+										<div class="invalid-tooltip">
+											Please enter a valid password.
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-8 col-sm-8 col-12">
+									<div class="float-left col-12">
+										<a class="text-warning" href="password.html">Forgot password?</a>
+									</div>
+									<div class="float-left col-12">
+										<a class="text-warning" href="register.html">Sign up</a>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-12">
+									<div class="float-sm-right">
+										<i id="button_icon" class="fas fa-lock"></i>
+										<button id="login_button" class="btn btn-dark rounded-1" type="submit" disabled>Log in</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="resources/jquery.slim.min.js"></script>
+	<script src="resources/popper.min.js"></script>
+	<script src="resources/bootstrap.min.js"></script>
+	<script src="resources/javascript.js"></script>
+
+</body>
+</html>
