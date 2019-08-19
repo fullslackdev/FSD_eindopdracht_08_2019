@@ -75,11 +75,11 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("tempuser", user);
                 //setting session to expire in 60 seconds
                 session.setMaxInactiveInterval(60);
-                response.sendRedirect("2falogin.html");
+                response.sendRedirect("2falogin.jsp");
             } else if (tempPassword) {
-                response.sendRedirect("passwordchange.html");
+                response.sendRedirect("passwordchange.jsp");
             } else if (emailNotValid) {
-                response.sendRedirect("emailvalidation.html");
+                response.sendRedirect("emailvalidation.jsp");
             } else {
                 fillSession(session, rs, user);
                 createCookie(response, user);

@@ -63,14 +63,14 @@ public class AjaxResponseController {
     @PathMapper("soad")
     private void soadRequest() {
         try {
-            response.sendRedirect("../soad.html");
+            response.sendRedirect("../soad.jsp");
         } catch (IOException ex) {}
     }
 
     @PathMapper("soad/soad/soad")
     private void soadSoadSoadRequest() {
         try {
-            response.sendRedirect("../../../soadsoadsoad.html");
+            response.sendRedirect("../../../soadsoadsoad.jsp");
         } catch (IOException ex) {}
     }
 }

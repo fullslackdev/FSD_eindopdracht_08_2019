@@ -35,7 +35,7 @@ public class TwoFactorServlet extends HttpServlet {
 
             HttpSession session = request.getSession(false);
             if (session == null) {
-                response.sendRedirect("login.html");
+                response.sendRedirect("login.jsp");
                 return;
             }
 
@@ -44,7 +44,7 @@ public class TwoFactorServlet extends HttpServlet {
                     session.invalidate();
                 }
                 request.getSession(true);
-                response.sendRedirect("login.html");
+                response.sendRedirect("login.jsp");
                 return;
             }
 
