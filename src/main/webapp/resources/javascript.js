@@ -15,20 +15,6 @@ $(document).ready(function() {
 		}
 	})();
 	
-	function changePasswordFormFunc(form, event) {
-		newpassword2.setCustomValidity(newpassword2.value != newpassword.value ? "Passwords do not match." : "");
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-			document.getElementById('login_button').setAttribute('disabled', 'disabled');
-			document.getElementById('button_icon').className = "fas fa-lock";
-		} else {
-			document.getElementById('login_button').removeAttribute('disabled');
-			document.getElementById('button_icon').className = "fas fa-lock-open";
-		}				
-		form.classList.add('was-validated');		
-	}
-	
 	(function () {
 		'use strict';
 		var form = document.getElementById('login_form');
@@ -44,19 +30,6 @@ $(document).ready(function() {
 			}, false);
 		}
 	})();
-	
-	function loginFormFunc(form, event) {
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-			document.getElementById('login_button').setAttribute('disabled', 'disabled');
-			document.getElementById('button_icon').className = "fas fa-lock";
-		} else {
-			document.getElementById('login_button').removeAttribute('disabled');
-			document.getElementById('button_icon').className = "fas fa-lock-open";
-		}				
-		form.classList.add('was-validated');
-	}
 
 	$("#invalidCheck").click( function () {
 		if ($( '#invalidCheck' ).prop( 'checked')) {
@@ -80,8 +53,64 @@ $(document).ready(function() {
 			$('#msgCharsLeft').text( left + ' character' + (left>1?'s':'') + ' left' );
 			$('#msgCharsLeft').removeClass('msgCharLimitColor');
 		}
-	} );
+	});
+
+	$('input[type="file"]').change(function(e) {
+		'use strict';
+		var form = document.getElementById('demo_form');
+		demoFormFunc(form, e);
+	});
 });
+
+function demoFormFunc(form, event) {
+	var fileName = event.target.files[0].name;
+	var fileSize = event.target.files[0].size;
+	if (checkFileSize(fileSize)) {
+		$('.custom-file-label').text(fileName);
+		document.getElementById('file_button').removeAttribute('disabled');
+		document.getElementById('button_icon').className = "fas fa-lock-open";
+	} else {
+		event.preventDefault();
+		event.stopPropagation();
+		document.getElementById('file_button').setAttribute('disabled', 'disabled');
+		document.getElementById('button_icon').className = "fas fa-lock";
+	}
+	form.classList.add('was-validated');
+}
+	
+function changePasswordFormFunc(form, event) {
+	newpassword2.setCustomValidity(newpassword2.value != newpassword.value ? "Passwords do not match." : "");
+	if (form.checkValidity() === false) {
+		event.preventDefault();
+		event.stopPropagation();
+		document.getElementById('login_button').setAttribute('disabled', 'disabled');
+		document.getElementById('button_icon').className = "fas fa-lock";
+	} else {
+		document.getElementById('login_button').removeAttribute('disabled');
+		document.getElementById('button_icon').className = "fas fa-lock-open";
+	}
+	form.classList.add('was-validated');
+}
+	
+function loginFormFunc(form, event) {
+	if (form.checkValidity() === false) {
+		event.preventDefault();
+		event.stopPropagation();
+		document.getElementById('login_button').setAttribute('disabled', 'disabled');
+		document.getElementById('button_icon').className = "fas fa-lock";
+	} else {
+		document.getElementById('login_button').removeAttribute('disabled');
+		document.getElementById('button_icon').className = "fas fa-lock-open";
+	}
+	form.classList.add('was-validated');
+}
+
+function checkFileSize(fileSize) {
+	if (fileSize > (1024 * 1024 * 10)) {
+		return false;
+	}
+	return true;
+}
 
 $(function () {
   'use strict'
