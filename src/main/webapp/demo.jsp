@@ -37,8 +37,19 @@ if (validator.isValidSession()) {
 						<form id="demo_form" class="needs-validation" action="" method="post" novalidate>
 							<div class="row login_row">
 								<div class="col-lg-8 col-md-10 col-sm-8 col-12">
+									<div class="form-label-group">
+										<input type="text" id="title" name="title" pattern="" maxlength="50" placeholder="Title" class="form-control" title="Title of the demo" required />
+										<label for="title">Title</label>
+										<div class="invalid-tooltip">
+											Give your demo a title.
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row login_row">
+								<div class="col-lg-8 col-md-10 col-sm-8 col-12">
 									<div class="custom-file">
-										<input type="file" id="file_selector" name="file" class="custom-file-input" accept="audio/*" required>
+										<input type="file" id="file_selector" name="file" class="custom-file-input" accept=".mp3,.ogg,.wav" required />
 										<label class="custom-file-label" for="file_selector" data-browse="Select demo">Select your demo...</label>
 										<div class="invalid-tooltip">
 											Please select your demo file to upload.
