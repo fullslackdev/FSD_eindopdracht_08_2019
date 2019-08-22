@@ -18,8 +18,7 @@
 	<link rel="stylesheet" href="resources/fontawesome/css/all.min.css">
 </head>
 <body class="bgMainLogo">
-<div id="super_div">
-	<nav class="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
+	<nav id="navbarid" class="navbar navbar-dark navbar-expand-md bg-dark sticky-top">
 		<a class="navbar-brand d-inline-block d-md-none" href="#">
 			<img class="dondiablo_png" src="images/dondiablo.png">
 		</a>
@@ -46,6 +45,5 @@
 	<script src="resources/javascript.js"></script>
 	<jsp:invoke fragment="extraJS"/>
 
-</div>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class ApiServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String path = request.getPathInfo().substring(1);
+        String path = request.getPathInfo().substring(1); // strip / at beginning
         try {
             PathHandler.handleRequest(path, response, request);
         } catch (Exception ex) {
