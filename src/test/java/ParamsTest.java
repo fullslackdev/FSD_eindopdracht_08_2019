@@ -1,10 +1,12 @@
 import com.diabolo.api.PathHandler;
+import com.diabolo.util.RegexUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Test params method in PathHandler class")
 class ParamsTest {
@@ -34,4 +36,17 @@ class ParamsTest {
             assertEquals("arg", test);
         } catch (Exception ex) {}
     }
+
+    /*
+    @Test
+    @DisplayName("Should return true for \"test@test.com\"")
+    void regexEmail() {
+        try {
+            Method method = RegexUtil.class.getDeclaredMethod("hasValidTest", String.class);
+            method.setAccessible(true);
+            boolean test = (boolean)method.invoke(PathHandler.class.getDeclaredConstructor().newInstance(),
+                    "test@test.com");
+            assertTrue(test);
+        } catch (Exception ex) {}
+    }*/
 }

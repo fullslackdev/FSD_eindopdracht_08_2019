@@ -65,7 +65,8 @@ $(document).ready(function() {
 function demoFormFunc(form, event) {
 	var fileName = event.target.files[0].name;
 	var fileSize = event.target.files[0].size;
-	if (checkFileSize(fileSize)) {
+	var fileType = event.target.files[0].type;
+	if ((checkFileSize(fileSize)) && (checkFileType(fileType))) {
 		$('.custom-file-label').text(fileName);
 		document.getElementById('file_button').removeAttribute('disabled');
 		document.getElementById('button_icon').className = "fas fa-lock-open";
@@ -110,6 +111,13 @@ function checkFileSize(fileSize) {
 		return false;
 	}
 	return true;
+}
+
+function checkFileType(fileType) {
+	if ((fileType == "video/ogg") || (fileType == "audio/mpeg") || (fileType == "audio/wav")) {
+		return true;
+	}
+	return false;
 }
 
 $(function () {

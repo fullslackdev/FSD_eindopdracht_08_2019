@@ -36,7 +36,8 @@ $(document).ready(function() {
 function handleFileUpload(files,obj) {
 	var fileSize = files[0].size;
 	var fileName = files[0].name;
-	if (checkFileSize(fileSize)) {
+	var fileType = files[0].type;
+	if ((checkFileSize(fileSize)) && (checkFileType(fileType))) {
 		$('.custom-file-label').text(fileName);
 		file_selector.files = files;
 		document.getElementById('file_button').removeAttribute('disabled');
@@ -72,12 +73,30 @@ function hidePage() {
 }
 
 function sendFileToServer(formData) {	
-	var xhttp = new XMLHttpRequest();
+	var xhttp = new XMLHttpRequest(),
+		last_response_len = false;
 	xhttp.open("POST", "DemoUpload" , true);
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			console.log("Upload success");
+			showPage();
 			//cFunction(xhttp);
+		}
+	};
+	xhttp.onprogress = function (e) {
+		var this_response, response = e.currentTarget.response;
+		if (last_response_len === false) {
+			this_response = response;
+			last_response_len = response.length;
+		} else {
+			this_response = response.substring(last_response_len);
+			last_response_len = response.length;
+		}
+		this_response = this_response.replace(/\r?\n|\r/g, "");
+		if (this_response == "something something something darkside") {
+			console.log("Success!");
+		} else {
+			console.log("Still processing...|" + this_response + "|");
 		}
 	};
 	xhttp.send(formData);
@@ -90,5 +109,5 @@ $('#file_button').click(function () {
 	fd.append('title', title.value);
 	sendFileToServer(fd);
 	hidePage();	
-	setTimeout(showPage, 5000);
+	//setTimeout(showPage, 5000);
 });

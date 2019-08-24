@@ -4,7 +4,8 @@ import com.diabolo.db.ConnectionManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
+import javax.servlet.ServletOutputStream;
+import java.io.*;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,33 +103,65 @@ public class DemoUtil {
 
     public static boolean insertDemoIntoDatabase(Map<String, Object> audioMap) {
         boolean returnValue = false;
-        String statusIdQuery = "SELECT id FROM action_status WHERE `name` = 'upload'";
+        String statusIdQuery = "SELECT id FROM action_status WHERE `name` = 'open'";
+        String actionIdQuery = "SELECT id FROM action_status WHERE `name` = 'upload'";
         String demoQuery = "INSERT INTO demo (user_id, status_id, title, filename, duration) " +
                 "VALUES (?, (" + statusIdQuery + "), ?, ?, ?)";
-        String historyQuery = "INSERT INTO upload_history (demo_id, orig_filename, orig_format, orig_bitrate) " +
+        String uploadHistoryQuery = "INSERT INTO upload_history (demo_id, orig_filename, orig_format, orig_bitrate) " +
                 "VALUES (?, ?, ?, ?);";
+        String accessHistoryQuery = "INSERT INTO access_history (user_id, demo_id, action_id) " +
+                "VALUES (?, ?, (" + actionIdQuery + "))";
         try (Connection con = ConnectionManager.getConnection("demo", "demo_rw")) {
+            int userId = (int)audioMap.get("userid");
             PreparedStatement demoStmt = con.prepareStatement(demoQuery, Statement.RETURN_GENERATED_KEYS);
-            demoStmt.setInt(1, (int)audioMap.get("userid"));
+            demoStmt.setInt(1, userId);
             demoStmt.setString(2, (String)audioMap.get("title"));
             demoStmt.setString(3, (String)audioMap.get("outputname"));
             demoStmt.setLong(4, (long)audioMap.get("duration"));
-            PreparedStatement historyStmt = con.prepareStatement(historyQuery);
             returnValue = demoStmt.executeUpdate() > 0;
             ResultSet rs = demoStmt.getGeneratedKeys();
             int demoId = 0;
             if (rs.next()) {
                 demoId = rs.getInt(1);
             }
-            historyStmt.setInt(1, demoId);
-            historyStmt.setString(2, (String)audioMap.get("origname"));
-            historyStmt.setString(3, (String)audioMap.get("format"));
-            historyStmt.setString(4, (String)audioMap.get("bitrate"));
-            returnValue = historyStmt.executeUpdate() > 0;
+
+            PreparedStatement uploadHistoryStmt = con.prepareStatement(uploadHistoryQuery);
+            uploadHistoryStmt.setInt(1, demoId);
+            uploadHistoryStmt.setString(2, (String)audioMap.get("origname"));
+            uploadHistoryStmt.setString(3, (String)audioMap.get("format"));
+            uploadHistoryStmt.setString(4, (String)audioMap.get("bitrate"));
+            returnValue = uploadHistoryStmt.executeUpdate() > 0;
+
+            PreparedStatement accessHistoryStmt = con.prepareStatement(accessHistoryQuery);
+            accessHistoryStmt.setInt(1, userId);
+            accessHistoryStmt.setInt(2, demoId);
+            returnValue = accessHistoryStmt.executeUpdate() > 0;
+
             return returnValue;
         } catch (SQLException ex) {
             LOGGER.error(DemoUtil.class.getName() + " SQL Error Message Logged !!!", ex.getMessage(), ex);
         }
         return returnValue;
+    }
+
+    public static void streamDemo(ServletOutputStream servletOutputStream, String filePath) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(servletOutputStream);
+
+            int chunk = 0;
+            while ((chunk = bufferedInputStream.read()) != -1) {
+                bufferedOutputStream.write(chunk);
+            }
+
+            bufferedInputStream.close();
+            fileInputStream.close();
+            bufferedOutputStream.close();
+            servletOutputStream.close();
+        } catch (IOException ex) {
+            LOGGER.error(DemoUtil.class.getName() + " Audio I/O Error Message Logged !!!", ex.getMessage(), ex);
+        }
     }
 }
