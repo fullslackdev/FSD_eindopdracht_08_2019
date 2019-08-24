@@ -21,6 +21,10 @@ public class RegexUtil {
         return matcher.find();
     }
 
+    /*private static boolean hasValidTest(String input) {
+        return hasValidPattern(input, EMAIL_PATTERN);
+    }*/
+
     public static String getPatternByInputName(String inputName) {
         switch (inputName) {
             case "user":
