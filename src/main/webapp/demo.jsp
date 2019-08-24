@@ -33,7 +33,7 @@ if (validator.isValidSession()) {
 					<div class="card-header bg-dark text-white">
 						<h4 class="card-title text-uppercase mt-1 mb-1"><i class="fas fa-upload"></i> Demo drop</h4>
 					</div>
-					<div class="card-body">
+					<div id="form_card_body" class="card-body">
 						<form id="demo_form" class="needs-validation" action="" method="post" novalidate>
 							<div class="row login_row">
 								<div class="col-lg-8 col-md-10 col-sm-8 col-12">
