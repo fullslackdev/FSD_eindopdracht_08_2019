@@ -1,5 +1,8 @@
 # DonDiablo
 
+**_Please note_**  
+Database, pom.xml and db.properties files have been removed from this public repository due to security reasons.
+
 **Contents of repository**  
 This repository contains the webapplication made during the first [NOVI Bootcamp](https://www.novi.nl/full-stack-developer/) for Full Stack Developers, which started in May 2019.  
 It is a demo drop application for DJ Don Diablo. Features are listed in the project description.
